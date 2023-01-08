@@ -1,0 +1,53 @@
+data:
+  dataset:
+    name: UCL2RSSCN # choices are ['AID', 'RSSCN', 'UCL']
+    source_root_path: /Path/Datasets/RS_images_2800   # /path/to/source/dataset/root
+    target_root_path: /Path/Datasets/UCMerced_LandUse # /path/to/target/dataset/root
+    source: 0
+    target: 1
+    n_share: 5 # number of classes to be shared
+    n_source_private: 2 # number of classes in source private domain
+    n_target_private: 16 # number of classes in total
+
+  dataloader:
+    class_balance: true #
+    data_workers: 3 # how many workers to use for train dataloaders
+    batch_size: 24 # batch_size for source domain and target domain 
+    batch_size_source: 24
+    num_batches_source: 1000 # batch_size for source pretrained
+    num_batches: 1000
+    num_epochs: 100
+    num_epochs_source: 1000
+    save_every: 10
+    viz_every: 10
+
+model:
+  base_model: resnet50 
+  pretrained_model: None
+  pretrained_resnet: /Path/Resnet/resnet50-19c8e357.pth
+
+Data_G:
+  cls_path: /Path/pretrained/500.pth.tar # /path/to/pre-trained model on source data
+
+train:
+  min_step: 20000 # minimum steps to run. run epochs until it exceeds the minStep
+  lr: 0.001 
+  weight_decay: 0.0005
+  nesterov: False
+  momentum: 0.9
+  lrn_rate: 0.001
+  lrn_rate_D: 0.001
+  cut: 1.0  # cut threshold for normalizing weights
+
+test:
+  test_interval: 500 # interval of two continuous test phase
+  test_only: False # test a given model and exit
+  resume_file: '' # model to test
+  w_0: 0.8 # hyper-parameter w_0
+
+misc:
+  gpus: 1 # how many GPUs to be used, 0 indicates CPU only
+
+log:
+  root_dir: log # the log directory (log directory will be {root_dir}/{method}/time/)
+  log_interval: 10 # steps to log scalars
