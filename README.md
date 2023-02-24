@@ -16,4 +16,13 @@ The pre-tranined models on AID dataset and RSSCN7 dataset are available at [Goog
 ## run
 After configuring the file path, run the code `python main.py`
 # Citation
+@ARTICLE{10043671,
+  author={Xu, Qingsong and Shi, Yilei and Yuan, Xin and Zhu, Xiao Xiang},
+  journal={IEEE Transactions on Geoscience and Remote Sensing}, 
+  title={Universal Domain Adaptation for Remote Sensing Image Scene Classification}, 
+  year={2023},
+  volume={61},
+  number={},
+  pages={1-15},
+  doi={10.1109/TGRS.2023.3235988}}
 
